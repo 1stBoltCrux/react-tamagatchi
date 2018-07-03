@@ -43,6 +43,16 @@ export default class App extends React.Component {
     5000
     );
   }
+  componentDidUpdate() {
+    this.clearTimers();
+  }
+  clearTimers() {
+    if(this.state.alive === false) {
+      clearInterval(this.deathTimer);
+      clearInterval(this.poopTimer);
+      clearInterval(this.timer);
+    }
+  }
 
   deprecator(){
     console.log(this.state);
@@ -97,8 +107,8 @@ export default class App extends React.Component {
   }
 
   handleDeath() {
-    if (this.state.cleanliness <= 0 || this.state.happiness <= 0 || this.state.sleep <= 0 || this.state.hunger <= 0) {
-      this.setState({alive: false})
+    if (this.state.cleanliness < 0 || this.state.happiness < 0 || this.state.sleep < 0 || this.state.hunger < 0) {
+      this.setState({alive: false, poopArray: []})
     }
   }
   render(){
@@ -116,13 +126,13 @@ export default class App extends React.Component {
             )}
           </div>
           <div className={styles.bored}>
-            {this.state.happiness <= 4 ? <img src={bored}/> : ''}
+            {this.state.happiness <= 4 && this.state.alive === true ? <img src={bored}/> : ''}
           </div>
           <div className={styles.hungry}>
-            {this.state.hunger <= 4 ? <img src={hungry}/> : ''}
+            {this.state.hunger <= 4 && this.state.alive === true ? <img src={hungry}/> : ''}
           </div>
           <div className={styles.sleepy}>
-            {this.state.sleep <= 4 ? <img src={sleepy}/> : ''}
+            {this.state.sleep <= 4 && this.state.alive === true ? <img src={sleepy}/> : ''}
           </div>
         </div>
         <ActionButton
