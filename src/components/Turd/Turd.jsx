@@ -3,10 +3,10 @@ import styles from './turd.css';
 
 export default function Turd(){
   return(
-      <div className={styles.turdWrapper}>
+    <div className={styles.turdWrapper}>
 
 
-      </div>
+    </div>
 
-  )
+  );
 }

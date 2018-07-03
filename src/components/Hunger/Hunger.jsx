@@ -3,10 +3,10 @@ import styles from './hunger.css';
 
 export default function Hunger(){
   return(
-      <div className={styles.hungerWrapper}>
+    <div className={styles.hungerWrapper}>
 
 
-      </div>
+    </div>
 
-  )
+  );
 }

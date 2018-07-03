@@ -3,10 +3,10 @@ import styles from './fatigue.css';
 
 export default function Fatigue(){
   return(
-      <div className={styles.fatigueWrapper}>
+    <div className={styles.fatigueWrapper}>
 
 
-      </div>
+    </div>
 
-  )
+  );
 }

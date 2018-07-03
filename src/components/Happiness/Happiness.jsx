@@ -3,10 +3,10 @@ import styles from './happiness.css';
 
 export default function Happiness(){
   return(
-      <div className={styles.happinessWrapper}>
+    <div className={styles.happinessWrapper}>
 
 
-      </div>
+    </div>
 
-  )
+  );
 }
