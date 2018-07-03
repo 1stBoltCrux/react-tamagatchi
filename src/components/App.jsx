@@ -35,7 +35,7 @@ export default class App extends React.Component {
 
   componentDidMount(){
     this.deathTimer = setInterval(() =>
-  this.handleDeath(), 5000);
+      this.handleDeath(), 5000);
     this.poopTimer = setInterval(() =>
       this.handlePoop(), 5000);
     this.timer = setInterval(() =>
@@ -55,7 +55,6 @@ export default class App extends React.Component {
   }
 
   deprecator(){
-    console.log(this.state);
     const newState = this.state;
     newState.sleep--;
     newState.hunger--;
@@ -95,8 +94,6 @@ export default class App extends React.Component {
     } else {
       this.setState({happiness: 10, play: false});
     }
-
-    console.log(this.state.hunger);
   }
   handlePoop() {
     if (this.state.cleanliness === 8 || this.state.cleanliness === 6 || this.state.cleanliness === 4) {
@@ -108,7 +105,7 @@ export default class App extends React.Component {
 
   handleDeath() {
     if (this.state.cleanliness < 0 || this.state.happiness < 0 || this.state.sleep < 0 || this.state.hunger < 0) {
-      this.setState({alive: false, poopArray: []})
+      this.setState({alive: false, poopArray: []});
     }
   }
   render(){
@@ -119,7 +116,7 @@ export default class App extends React.Component {
             onRest={this.handleRest}
             onClean={this.handleClean}
             onPlay={this.handlePlay}/>
-            {this.state.alive === false ? <img src={dead}/> : <img src={guy}/>}
+          {this.state.alive === false ? <img src={dead}/> : <img src={guy}/>}
           <div className={styles.poop}>
             {this.state.poopArray.map((newPoop, index) =>
               <img src={newPoop} key={index}/>
