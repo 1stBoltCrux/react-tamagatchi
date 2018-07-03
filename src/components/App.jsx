@@ -4,6 +4,7 @@ import styles from './app.css';
 import Nav from './Nav/Nav';
 import ActionButton from './ActionButton/ActionButton';
 
+
 import guy from './../images/guy.gif';
 
 
@@ -12,7 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       sleep: 10,
-      hunger: 5,
+      hunger: 10,
       cleanliness: 10,
       happiness: 10,
       feed: false,
@@ -26,6 +27,28 @@ export default class App extends React.Component {
     this.handlePlay = this.handlePlay.bind(this);
     this.handleRest = this.handleRest.bind(this);
     this.handleClear = this.handleClear.bind(this);
+  }
+
+  componentDidMount(){
+    this.timer = setInterval(() =>
+      this.deprecator(),
+        10000
+    );
+  }
+
+  deprecator(){
+    console.log(this.state);
+    const newState = this.state;
+    newState.sleep--;
+    newState.hunger--;
+    newState.cleanliness--;
+    newState.happiness--;
+    this.setState({
+         sleep: newState.sleep,
+         hunger: newState.hunger,
+         cleanliness: newState.cleanliness,
+         happiness: newState.happiness
+       })
   }
 
   handleFeed(){
@@ -61,7 +84,10 @@ export default class App extends React.Component {
     return (
       <div className={styles.appWrapper}>
           <div className={styles.display}>
-            <Nav onFeed={this.handleFeed}/>
+            <Nav onFeed={this.handleFeed}
+                  onRest={this.handleRest}
+                  onClean={this.handleClean}
+                  onPlay={this.handlePlay}/>
             <img src={guy}/>
           </div>
           <ActionButton

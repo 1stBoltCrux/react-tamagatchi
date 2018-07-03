@@ -1,10 +1,10 @@
-# React Template App
-**A webpack setup / first React application for Epicodus 06.24.18**
+# React Tamagotchi App
+**for Epicodus 07.03.18**
 
-## By Bobby Martin
+## By Bobby Martin and Ted Leary
 
 ## Description
-This is a basic React app that uses props, and propTypes eslint, styled-jsx, and hot-swap
+This is a React app that represents state management and other concepts.
 
 ## Setup Requirements
 
@@ -20,4 +20,4 @@ This is a basic React app that uses props, and propTypes eslint, styled-jsx, and
 
 This project uses the _MIT License_  
 
-&copy; **Bobby Martin** 2018
+&copy; **Bobby Martin & Ted Leary** 2018

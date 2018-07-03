@@ -8,10 +8,10 @@ import Sleep from './../Sleep/Sleep';
 export default function Nav(props){
   return(
       <div className={styles.navWrapper}>
-        <Clean/>
+        <Clean onClean={props.onClean}/>
         <Feed onFeed={props.onFeed}/>
-        <Play/>
-        <Sleep/>
+        <Play onPlay={props.onPlay}/>
+        <Sleep onRest={props.onRest}/>
       </div>
 
   )
