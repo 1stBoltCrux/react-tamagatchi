@@ -9,6 +9,15 @@
   flex-direction: column;
   position: relative;
 }
+.poop {
+  width: 200px;
+  position: absolute;
+  left: -50px;
+  bottom: -50px;
+}
+.poop img {
+  width: 100%;
+}
 button {
   outline: none;
   background: transparent;

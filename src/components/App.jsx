@@ -6,6 +6,7 @@ import ActionButton from './ActionButton/ActionButton';
 
 
 import guy from './../images/guy.gif';
+import poop from './../images/poop.gif';
 
 
 export default class App extends React.Component {
@@ -32,7 +33,7 @@ export default class App extends React.Component {
   componentDidMount(){
     this.timer = setInterval(() =>
       this.deprecator(),
-        10000
+        5000
     );
   }
 
@@ -44,11 +45,11 @@ export default class App extends React.Component {
     newState.cleanliness--;
     newState.happiness--;
     this.setState({
-         sleep: newState.sleep,
-         hunger: newState.hunger,
-         cleanliness: newState.cleanliness,
-         happiness: newState.happiness
-       })
+     sleep: newState.sleep,
+     hunger: newState.hunger,
+     cleanliness: newState.cleanliness,
+     happiness: newState.happiness
+   })
   }
 
   handleFeed(){
@@ -89,6 +90,9 @@ export default class App extends React.Component {
                   onClean={this.handleClean}
                   onPlay={this.handlePlay}/>
             <img src={guy}/>
+            <div className={styles.poop}>
+              {this.state.cleanliness < 8 ? <img  src={poop}/> : ''}
+            </div>
           </div>
           <ActionButton
             onClear={this.handleClear}/>
