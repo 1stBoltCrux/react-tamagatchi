@@ -1,0 +1,11 @@
+.navWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  width: 600px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  height: 100px;
+}

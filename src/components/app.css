@@ -1,0 +1,24 @@
+.display {
+  width: 600px;
+  height: 600px;
+  background-color: #ddd;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+button {
+  outline: none;
+  background: transparent;
+  border: none;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+button:focus {
+  border: 2px solid black;
+}
