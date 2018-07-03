@@ -32,3 +32,22 @@ button {
 button:focus {
   border: 2px solid black;
 }
+
+.bored, .sleepy, .hungry {
+  width: 250px;
+  position: absolute;
+  top: 100px;
+  right: 0;
+}
+
+.sleepy {
+  top: 200px;
+}
+
+.hungry {
+  top: 300px;
+}
+
+.bored img, .sleepy img, .hungry img {
+  width: 100%;
+}

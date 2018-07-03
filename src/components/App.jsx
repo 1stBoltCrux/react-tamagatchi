@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './app.css';
 import Nav from './Nav/Nav';
 import ActionButton from './ActionButton/ActionButton';
-
-
+import dead from './../images/dead.gif';
 import guy from './../images/guy.gif';
 import poop from './../images/poop.gif';
-
+import bored from './../images/bored.png';
+import sleepy from './../images/sleepy.png';
+import hungry from './../images/hungry.png';
 
 export default class App extends React.Component {
   constructor(props){
@@ -20,7 +21,8 @@ export default class App extends React.Component {
       rest: false,
       play: false,
       clean: false,
-      poopArray: []
+      poopArray: [],
+      alive: true
     };
 
     this.handleFeed = this.handleFeed.bind(this);
@@ -32,6 +34,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
+    this.deathTimer = setInterval(() =>
+  this.handleDeath(), 5000);
     this.poopTimer = setInterval(() =>
       this.handlePoop(), 5000);
     this.timer = setInterval(() =>
@@ -91,6 +95,12 @@ export default class App extends React.Component {
       this.setState({poopArray: newPoopArray});
     }
   }
+
+  handleDeath() {
+    if (this.state.cleanliness <= 0 || this.state.happiness <= 0 || this.state.sleep <= 0 || this.state.hunger <= 0) {
+      this.setState({alive: false})
+    }
+  }
   render(){
     return (
       <div className={styles.appWrapper}>
@@ -99,11 +109,20 @@ export default class App extends React.Component {
             onRest={this.handleRest}
             onClean={this.handleClean}
             onPlay={this.handlePlay}/>
-          <img src={guy}/>
+            {this.state.alive === false ? <img src={dead}/> : <img src={guy}/>}
           <div className={styles.poop}>
             {this.state.poopArray.map((newPoop, index) =>
               <img src={newPoop} key={index}/>
             )}
+          </div>
+          <div className={styles.bored}>
+            {this.state.happiness <= 4 ? <img src={bored}/> : ''}
+          </div>
+          <div className={styles.hungry}>
+            {this.state.hunger <= 4 ? <img src={hungry}/> : ''}
+          </div>
+          <div className={styles.sleepy}>
+            {this.state.sleep <= 4 ? <img src={sleepy}/> : ''}
           </div>
         </div>
         <ActionButton
