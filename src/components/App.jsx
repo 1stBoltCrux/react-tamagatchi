@@ -8,6 +8,7 @@ import poop from './../images/poop.gif';
 import bored from './../images/bored.png';
 import sleepy from './../images/sleepy.png';
 import hungry from './../images/hungry.png';
+import eating from './../images/eating.gif'
 
 export default class App extends React.Component {
   constructor(props){
@@ -22,6 +23,7 @@ export default class App extends React.Component {
       play: false,
       clean: false,
       poopArray: [],
+      currentImage: guy,
       alive: true
     };
 
@@ -69,24 +71,47 @@ export default class App extends React.Component {
   }
 
   handleFeed(){
-    this.setState({feed: true});
+    this.setState({feed: true,
+                   clean: false,
+                   play: false,
+                   rest: false
+                  });
   }
 
   handleClean(){
-    this.setState({clean: true});
+    this.setState({feed: false,
+                   clean: true,
+                   play: false,
+                   rest: false
+                  });
   }
 
   handlePlay(){
-    this.setState({play: true});
+    this.setState({feed: false,
+                   clean: false,
+                   play: true,
+                   rest: false
+                  });
   }
 
   handleRest(){
-    this.setState({rest: true});
+    this.setState({feed: false,
+                   clean: false,
+                   play: false,
+                   rest: true
+                  });
+  }
+
+  handleAnimation(){
+    setTimeout(() => {
+      this.setState({currentImage: guy})
+    }, 3000);
   }
 
   handleClear() {
     if (this.state.feed === true) {
-      this.setState({hunger: 10, feed: false});
+      this.handleAnimation();
+      this.setState({hunger: 10, feed: false, currentImage: eating});
     } else if (this.state.clean === true) {
       this.setState({cleanliness: 10, clean: false, poopArray: []});
     } else if (this.state.rest === true) {
@@ -109,6 +134,17 @@ export default class App extends React.Component {
     }
   }
   render(){
+    const guyImage = {
+      width: '100%',
+      height: '100%',
+      background: '#ddd',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative',
+      zIndex: this.state.currentImage !== guy ? '2' : '1'
+    }
+    
     return (
       <div className={styles.appWrapper}>
         <div className={styles.display}>
@@ -116,7 +152,8 @@ export default class App extends React.Component {
             onRest={this.handleRest}
             onClean={this.handleClean}
             onPlay={this.handlePlay}/>
-          {this.state.alive === false ? <img src={dead}/> : <img src={guy}/>}
+            {}
+          {this.state.alive === false ? <img src={dead}/> : <div style={guyImage}><img src={this.state.currentImage}/></div>}
           <div className={styles.poop}>
             {this.state.poopArray.map((newPoop, index) =>
               <img src={newPoop} key={index}/>
